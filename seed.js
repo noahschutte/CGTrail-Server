@@ -15,6 +15,7 @@ async function _main () {
             await mongoConnection.collection('businesses').insertOne(business)
             console.log('uploaded!')
         })
+        resolve(true)
     })
 
     console.log('Done seeding db.')
