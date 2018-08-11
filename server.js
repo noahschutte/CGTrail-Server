@@ -1,4 +1,5 @@
 require('dotenv').config()
+const env = process.env.NODE_ENV || 'development';
 
 const express = require('express');
 const app = express();
@@ -8,14 +9,20 @@ const Log = require('log');
 const log = new Log('info');
 
 const MongoClient = require('./MongoClient')
-const mongoUri = process.env.MONGO_URI
+let mongoUri
+if (env === 'production') {
+    mongoUri = process.env.PRODUCTION_MONGO_URI
+} else if (env === 'staging') {
+    mongoUri = process.env.STAGING_MONGO_URI
+} else {
+    mongoUri = process.env.LOCAL_MONGO_URI
+}
 const dbName = 'cgtrail'
 let mongoClient = new MongoClient(mongoUri, dbName)
 let mongoConnection
 const BusinessesRepository = require('./BusinessesRepository')
 let businessesRepository
 
-const env = process.env.NODE_ENV || 'development';
 const port = process.env.PORT || 8000;
 
 /**
@@ -68,9 +75,7 @@ app.get('/business/:id', async (req, res) => {
 app.listen(port, async () => {
     log.info('App is starting up...')
     mongoConnection = await mongoClient.init()
-    console.log({mongoConnection})
     businessesRepository = new BusinessesRepository(mongoConnection)
-    console.log({businessesRepository})
     log.info(`Server is running on port: ${port}`);
 });
 
