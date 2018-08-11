@@ -23,8 +23,7 @@ class MongoClient {
      */
     async init () {
         const client = await mongoClient.connect(
-            this.mongoUri,
-            { useNewUrlParser: true },
+            this.mongoUri
         )
         this.client = client
         this.connection = client.db(this.dbName)

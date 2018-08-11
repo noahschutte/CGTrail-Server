@@ -70,7 +70,7 @@ app.listen(port, async () => {
     mongoConnection = await mongoClient.init()
     console.log({mongoConnection})
     businessesRepository = new BusinessesRepository(mongoConnection)
-    console.log({businessRepository})
+    console.log({businessesRepository})
     log.info(`Server is running on port: ${port}`);
 });
 
