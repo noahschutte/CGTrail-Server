@@ -15,6 +15,7 @@ let mongoConnection
 const BusinessesRepository = require('./BusinessesRepository')
 let businessesRepository
 
+const env = process.env.NODE_ENV || 'development';
 const port = process.env.PORT || 8000;
 
 /**

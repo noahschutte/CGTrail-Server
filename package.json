@@ -4,7 +4,14 @@
   "description": "www.CrimsonAndGoldTrail.com",
   "main": "MongoClient.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
+    "start": "node app.js",
+    "deploy-staging": "git push staging-heroku staging:master",
+    "deploy-prod": "git push prod-heroku master:master",
+    "open-staging": "heroku open -a staging-crimsonandgoldtrail-server",
+    "open-prod": "heroku open -a crimsonandgoldtrail-server"
   },
   "repository": {
     "type": "git",
@@ -22,5 +29,8 @@
     "express": "^4.16.3",
     "log": "^1.4.0",
     "mongodb": "^3.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1"
   }
 }
