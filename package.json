@@ -7,11 +7,10 @@
     "start": "node server.js",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "start": "node app.js",
     "deploy-staging": "git push staging-heroku staging:master",
     "deploy-prod": "git push prod-heroku master:master",
-    "open-staging": "heroku open -a staging-cgtail-server",
-    "open-prod": "heroku open -a cgtail-server"
+    "open-staging": "heroku open -a staging-cgtrail-server",
+    "open-prod": "heroku open -a cgtrail-server"
   },
   "repository": {
     "type": "git",
