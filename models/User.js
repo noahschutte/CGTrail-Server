@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 
-mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost:27017/cgtrail')
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/cgtrail');
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -37,7 +37,7 @@ const UserSchema = new mongoose.Schema({
             required: true
         }
     }]
-})
+});
 
 UserSchema.methods.toJSON = function () {
     var user = this;
@@ -123,4 +123,4 @@ UserSchema.pre('save', function (next) {
 
 const User = mongoose.model('User', UserSchema)
 
-module.exports = User
+module.exports = User;
