@@ -23,16 +23,16 @@ https://github.com/noahschutte/CGTrail-Server
 origin	https://github.com/noahschutte/CGTrail-Server.git (fetch)
 origin	https://github.com/noahschutte/CGTrail-Server.git (push)
 ```
-1. `git remote add staging-heroku https://git.heroku.com/staging-crimsonandgoldtrail-server.git`
-1. `git remote add prod-heroku https://git.heroku.com/crimsonandgoldtrail-server.git`
+1. `git remote add staging-heroku https://git.heroku.com/staging-cgtrail-server.git`
+1. `git remote add prod-heroku https://git.heroku.com/cgtrail-server.git`
 1. `git remote -v`
 ```
 origin	https://github.com/noahschutte/CGTrail-Server.git (fetch)
 origin	https://github.com/noahschutte/CGTrail-Server.git (push)
-prod-heroku	https://git.heroku.com/crimsonandgoldtrail-server.git (fetch)
-prod-heroku	https://git.heroku.com/crimsonandgoldtrail-server.git (push)
-staging-heroku	https://git.heroku.com/staging-crimsonandgoldtrail-server.git (fetch)
-staging-heroku	https://git.heroku.com/staging-crimsonandgoldtrail-server.git (push)
+prod-heroku	https://git.heroku.com/cgtrail-server.git (fetch)
+prod-heroku	https://git.heroku.com/cgtrail-server.git (push)
+staging-heroku	https://git.heroku.com/staging-cgtrail-server.git (fetch)
+staging-heroku	https://git.heroku.com/staging-cgtrail-server.git (push)
 ```
 
 ### Open Site in Staging

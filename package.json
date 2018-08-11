@@ -10,8 +10,8 @@
     "start": "node app.js",
     "deploy-staging": "git push staging-heroku staging:master",
     "deploy-prod": "git push prod-heroku master:master",
-    "open-staging": "heroku open -a staging-crimsonandgoldtrail-server",
-    "open-prod": "heroku open -a crimsonandgoldtrail-server"
+    "open-staging": "heroku open -a staging-cgtail-server",
+    "open-prod": "heroku open -a cgtail-server"
   },
   "repository": {
     "type": "git",
