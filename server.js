@@ -66,8 +66,11 @@ app.get('/business/:id', async (req, res) => {
 });
 
 app.listen(port, async () => {
+    log.info('App is starting up...')
     mongoConnection = await mongoClient.init()
+    console.log({mongoConnection})
     businessesRepository = new BusinessesRepository(mongoConnection)
+    console.log({businessRepository})
     log.info(`Server is running on port: ${port}`);
 });
 
