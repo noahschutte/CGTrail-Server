@@ -1,8 +1,11 @@
 require('dotenv').config()
+const _ = require('lodash')
 const env = process.env.NODE_ENV || 'development';
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
+app.use(bodyParser.json());
 const cors = require('cors');
 
 const Log = require('log');
@@ -18,10 +21,14 @@ if (env === 'production') {
     mongoUri = process.env.LOCAL_MONGO_URI
 }
 const dbName = 'cgtrail'
+
 let mongoClient = new MongoClient(mongoUri, dbName)
 let mongoConnection
 const BusinessesRepository = require('./BusinessesRepository')
 let businessesRepository
+
+const User = require('./models/User')
+var { authenticate } = require('./middleware/authenticate');
 
 const port = process.env.PORT || 8000;
 
@@ -71,6 +78,51 @@ app.get('/business/:id', async (req, res) => {
         return res.status(500).json({errorMessage: e.message});
     }
 });
+
+app.post('/users', async (req, res) => {
+    var body = _.pick(req.body, ['email', 'password']);
+    var user = new User(body);
+
+    user.save().then(() => {
+        return user.generateAuthToken();
+    }).then((token) => {
+        res.header('x-auth', token).send(user);
+    }).catch((e) => {
+        res.status(400).send(e);
+    })
+});
+
+app.post('/users/login', (req, res) => {
+    var body = _.pick(req.body, ['email', 'password']);
+
+    User.findByCredentials(body.email, body.password).then((user) => {
+        return user.generateAuthToken().then((token) => {
+            res.header('x-auth', token).send(user);
+        });
+    }).catch((e) => {
+        res.status(400).send(e);
+    });
+});
+
+app.delete('/users/me/token', authenticate, (req, res) => {
+    req.user.removeToken(req.token).then(() => {
+        res.status(200).send();
+    }, () => {
+        res.status(400).send();
+    });
+});
+
+app.post('/businesses', authenticate, async (req, res) => {
+
+})
+
+app.put('business/:id', authenticate, async (req, res) => {
+
+})
+
+app.delete('business/:id', authenticate, async (req, res) => {
+
+})
 
 app.listen(port, async () => {
     log.info('App is starting up...')

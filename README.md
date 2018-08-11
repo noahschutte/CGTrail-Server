@@ -41,6 +41,9 @@ staging-heroku	https://git.heroku.com/staging-cgtrail-server.git (push)
 ### Open Site in Production
 `npm run open-prod`
 
+### Deploy your feature branch to staging env
+`git push staging-heroku {{yourFeatureBranchName}}:master`
+
 ### Deploy to staging env
 `npm run deploy-staging`
 
