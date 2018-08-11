@@ -33,7 +33,6 @@ module.exports = [
                 PhoneNumber: "303-797-2992"
             }
         ],
-        _id: "5ad95021c103b100143cb1ba",
         BusinessName: "Sazza Pizza + Salads",
         AlumName: "Jeff Rogoff",
         Title: "Owner",
@@ -64,7 +63,6 @@ module.exports = [
             Name: "Ballpark",
             PhoneNumber: "303-296-9460"
         }],
-        _id: "5ad6e29dadb9cb72019fecfc",
         BusinessName: "Great Divide Brewing Co.",
         AlumName: "Brian Dunn",
         Title: "CEO & Founder",
@@ -94,7 +92,6 @@ module.exports = [
             Name: "One Day for DU",
             PhoneNumber: ""
         }],
-        _id: "5b0dfb7a4996af0014a8ef7b",
         BusinessName: "One Day for DU",
         AlumName: "",
         Title: "",
@@ -124,7 +121,6 @@ module.exports = [
             Name: "Milk Market",
             PhoneNumber: ""
         }],
-        _id: "5ad6e29dadb9cb72019fecfe",
         BusinessName: "Milk Market",
         AlumName: "Frank Bonnano",
         Title: "Principal",
@@ -204,7 +200,6 @@ module.exports = [
                 Name: "Snooze Westminster"
             }
         ],
-        _id: "5adf88b3b480470014d0ad81",
         BusinessName: "Snooze an A.M. Eatery",
         __v: 0,
         Primary_Image_Url: "https://i.pinimg.com/originals/be/13/e0/be13e022997faa1b4ba309d64ba10438.jpg",

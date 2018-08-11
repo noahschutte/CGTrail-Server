@@ -10,17 +10,11 @@ class MongoClient {
      * @param {string} replicaSet
      * @param {string} dbName
      */
-    constructor (hosts, replicaSet, dbName) {
+    constructor (mongoUri, dbName) {
         this.client = null
         this.connection = null
-        this.replicaSet = replicaSet
         this.dbName = dbName
-        this.mongoUri = (
-            'mongodb://' +
-            hosts.map(
-                host => host.ip + ':' + host.port
-            ).join(',') + '/' + dbName
-        )
+        this.mongoUri = mongoUri
     }
 
     /**
@@ -30,10 +24,7 @@ class MongoClient {
     async init () {
         const client = await mongoClient.connect(
             this.mongoUri,
-            {
-                replicaSet: this.replicaSet,
-                useNewUrlParser: true
-            },
+            { useNewUrlParser: true },
         )
         this.client = client
         this.connection = client.db(this.dbName)

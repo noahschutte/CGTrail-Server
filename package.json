@@ -4,7 +4,7 @@
   "description": "www.CrimsonAndGoldTrail.com",
   "main": "MongoClient.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,7 @@
   "homepage": "https://github.com/noahschutte/CGTrail-Server#readme",
   "dependencies": {
     "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "log": "^1.4.0",
     "mongodb": "^3.1.1"

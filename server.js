@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -6,11 +8,12 @@ const Log = require('log');
 const log = new Log('info');
 
 const MongoClient = require('./MongoClient')
-const hosts = [{ ip: 'localhost', port: '27017' }]
-const replicaSet = ''
+const mongoUri = process.env.MONGO_URI
 const dbName = 'cgtrail'
-const mongoClient = new MongoClient(hosts, replicaSet, dbName)
+let mongoClient = new MongoClient(mongoUri, dbName)
+let mongoConnection
 const BusinessesRepository = require('./BusinessesRepository')
+let businessesRepository
 
 const port = process.env.PORT || 8000;
 
@@ -29,36 +32,42 @@ function ignoreFavicon(req, res, next) {
 }
 
 app.use(ignoreFavicon);
-
 app.use(cors());
 
 app.get('/businesses', async (req, res) => {
     try {
-        const mongoConnection = await mongoClient.init()
-        const businessesRepository = new BusinessesRepository(mongoConnection)
         const businesses = await businessesRepository.findAll()
         res.status(200).json(businesses);
     } catch (e) {
-        log.error(`Failed get /businesses with error: ${e.message}`);
+        log.error(`Failed to get /businesses with error: ${e.message}`);
         res.status(400).json({errorMessage: e.message});
     }
 });
 
 app.get('/business/:id', async (req, res) => {
+    const businessId = req.params.id
+    if (typeof businessId != "string") {
+        const errorMessage = `Bad request. Business _id must be a string.`
+        log.error(errorMessage);
+        return res.status(400).json({errorMessage});
+    }
     try {
-        const businessId = req.params.id
-        const mongoConnection = await mongoClient.init()
-        const businessesRepository = new BusinessesRepository(mongoConnection)
         const business = await businessesRepository.findById(businessId)
-        res.status(200).json(business);
+        if (!business) {
+            log.error(`No business found with _id: ${businessId}`);
+            return res.status(404).json({});
+        }
+        return res.status(200).json(business);
     } catch (e) {
-        log.error(`Failed get /business _id: ${businessId} with error: ${e.message}`);
-        res.status(400).json({errorMessage: e.message});
+        log.error(`Failed to get /business _id: ${businessId} with error: ${e.message}`);
+        return res.status(500).json({errorMessage: e.message});
     }
 });
 
-app.listen(port, () => {
+app.listen(port, async () => {
+    mongoConnection = await mongoClient.init()
+    businessesRepository = new BusinessesRepository(mongoConnection)
     log.info(`Server is running on port: ${port}`);
 });
 
-module.exports = app;
+// module.exports = app;
