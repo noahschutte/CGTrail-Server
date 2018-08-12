@@ -135,7 +135,6 @@ app.put('/businesses/:id', authenticate, async (req, res) => {
 })
 
 app.delete('/businesses/:id', authenticate, async (req, res) => {
-    console.log('1')
     var id = req.params.id;
     if (!ObjectID.isValid(id)) {
         return res.status(404).send();
