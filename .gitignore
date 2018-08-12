@@ -23,4 +23,5 @@ yarn-error.log*
 
 .env
 
-/seed
+seed/seed.js
+seed/businesses.js

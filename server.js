@@ -120,7 +120,7 @@ app.delete('/users/logout', authenticate, (req, res) => {
 });
 
 app.post('/businesses', authenticate, async (req, res) => {
-    
+
 })
 
 app.put('/businesses/:id', authenticate, async (req, res) => {
