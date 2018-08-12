@@ -49,7 +49,11 @@ function ignoreFavicon(req, res, next) {
 
 app.use(ignoreFavicon);
 app.use(cors({
-    'allowedHeaders': ['x-auth', 'Content-Type'],
+    'allowedHeaders': [
+        'x-auth',
+        'Content-Type',
+        'Access-Control-Allow-Origin'
+    ],
     'exposedHeaders': ['x-auth'],
     'origin': '*',
     'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
