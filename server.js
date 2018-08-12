@@ -11,6 +11,7 @@ const cors = require('cors');
 const Log = require('log');
 const log = new Log('info');
 
+const { ObjectID } = require('mongodb');
 const MongoClient = require('./MongoClient')
 let mongoUri
 if (env === 'production') {
@@ -119,19 +120,20 @@ app.delete('/users/logout', authenticate, (req, res) => {
 });
 
 app.post('/businesses', authenticate, async (req, res) => {
+    
+})
+
+app.put('/businesses/:id', authenticate, async (req, res) => {
 
 })
 
-app.put('businesses/:id', authenticate, async (req, res) => {
-
-})
-
-app.delete('businesses/:id', authenticate, async (req, res) => {
+app.delete('/businesses/:id', authenticate, async (req, res) => {
+    console.log('1')
     var id = req.params.id;
     if (!ObjectID.isValid(id)) {
         return res.status(404).send();
     }
-    const _id = await BusinessesRepository.deleteById({ _id: id })
+    const _id = await businessesRepository.deleteById(id)
     if (!_id) {
         return res.status(404).send();
     }

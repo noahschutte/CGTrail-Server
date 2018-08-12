@@ -26,7 +26,7 @@ class BusinessesRepository {
     }
 
     deleteById (id) {
-        return this.collection.findOneAndRemove({ _id: new mongo.ObjectID(id) })
+        return this.collection.findOneAndDelete({ _id: new mongo.ObjectID(id) })
     }
 }
 
