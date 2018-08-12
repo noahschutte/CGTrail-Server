@@ -24,6 +24,10 @@ class BusinessesRepository {
     findById (id) {
         return this.collection.findOne({ _id: new mongo.ObjectID(id) })
     }
+
+    deleteById (id) {
+        return this.collection.findOneAndRemove({ _id: new mongo.ObjectID(id) })
+    }
 }
 
 module.exports = BusinessesRepository

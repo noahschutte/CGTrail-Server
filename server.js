@@ -47,7 +47,13 @@ function ignoreFavicon(req, res, next) {
 }
 
 app.use(ignoreFavicon);
-app.use(cors());
+app.use(cors({
+    'allowedHeaders': ['x-auth', 'Content-Type'],
+    'exposedHeaders': ['x-auth'],
+    'origin': '*',
+    'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    'preflightContinue': false
+}));
 
 app.get('/businesses', async (req, res) => {
     try {
@@ -121,7 +127,15 @@ app.put('businesses/:id', authenticate, async (req, res) => {
 })
 
 app.delete('businesses/:id', authenticate, async (req, res) => {
-
+    var id = req.params.id;
+    if (!ObjectID.isValid(id)) {
+        return res.status(404).send();
+    }
+    const _id = await BusinessesRepository.deleteById({ _id: id })
+    if (!_id) {
+        return res.status(404).send();
+    }
+    res.send({_id});
 })
 
 app.listen(port, async () => {
