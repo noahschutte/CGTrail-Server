@@ -52,7 +52,9 @@ app.use(cors({
     'allowedHeaders': [
         'x-auth',
         'Content-Type',
-        'Access-Control-Allow-Origin'
+        'Access-Control-Allow-Origin',
+        'Access-Control-Allow-Methods',
+        'Access-Control-Allow-Headers'
     ],
     'exposedHeaders': ['x-auth'],
     'origin': '*',
