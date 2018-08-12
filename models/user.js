@@ -1,3 +1,4 @@
+require('dotenv').config()
 const mongoose = require('mongoose');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
@@ -5,7 +6,17 @@ const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/cgtrail');
+
+const env = process.env.NODE_ENV || 'development';
+let mongoUri
+if (env === 'production') {
+    mongoUri = process.env.PRODUCTION_MONGO_URI
+} else if (env === 'staging') {
+    mongoUri = process.env.STAGING_MONGO_URI
+} else {
+    mongoUri = process.env.LOCAL_MONGO_URI
+}
+mongoose.connect(mongoUri + '/cgtrail');
 
 const UserSchema = new mongoose.Schema({
     email: {
