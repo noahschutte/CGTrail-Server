@@ -21,7 +21,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.env
+server/configs/config.json
 
 seed/seed.js
 seed/businesses.js
+
