@@ -23,6 +23,3 @@ yarn-error.log*
 
 server/configs/config.json
 
-seed/seed.js
-seed/businesses.js
-
