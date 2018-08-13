@@ -11,8 +11,9 @@ https://github.com/noahschutte/CGTrail-Server
 
 ### Run Locally
 1. `npm install`
+1. `mv configs/exampleConfig.json configs/config.json`
 1. `npm run start`
-1. Open in browser: `localhost:8000`
+1. Open in browser: `localhost:8000/businesses`
 
 ### Add heroku to git remotes
 1. `git pull origin master:master`
