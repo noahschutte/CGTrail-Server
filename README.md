@@ -15,7 +15,11 @@ https://github.com/noahschutte/CGTrail-Server
 1. `npm run start`
 1. Open in browser: `localhost:8000/businesses`
 
-### Add heroku to git remotes
+### Seed db
+1. `npm run seed`
+
+### How to contribute
+#### Add heroku to git remotes
 1. `git pull origin master:master`
 1. `heroku login`
 1. Enter heroku username and password.
@@ -36,17 +40,18 @@ staging-heroku	https://git.heroku.com/staging-cgtrail-server.git (fetch)
 staging-heroku	https://git.heroku.com/staging-cgtrail-server.git (push)
 ```
 
-### Open Site in Staging
+#### Open Site in Staging
 `npm run open-staging`
 
-### Open Site in Production
+#### Open Site in Production
 `npm run open-prod`
 
-### Deploy your feature branch to staging env
+### How to deploy
+##### Deploy your feature branch to staging env
 `git push staging-heroku {{yourFeatureBranchName}}:master`
 
-### Deploy to staging env
+##### Deploy to staging env
 `npm run deploy-staging`
 
-### Deploy to production env
+##### Deploy to production env
 `npm run deploy-prod`

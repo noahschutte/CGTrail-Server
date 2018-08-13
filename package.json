@@ -10,7 +10,8 @@
     "deploy-staging": "git push staging-heroku staging:master",
     "deploy-prod": "git push prod-heroku master:master",
     "open-staging": "heroku open -a staging-cgtrail-server",
-    "open-prod": "heroku open -a cgtrail-server"
+    "open-prod": "heroku open -a cgtrail-server",
+    "seed": "node seed/seed.js"
   },
   "repository": {
     "type": "git",
