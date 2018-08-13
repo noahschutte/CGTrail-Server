@@ -1,6 +1,6 @@
 {
   "development": {
-    "JWT_SECRET": "M2F393exjmJRc7RQNmQ5R38x",
+    "JWT_SECRET": "secret",
     "MONGO_URI": "mongodb://localhost:27017/cgtrail"
   },
   "staging": {
