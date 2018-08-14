@@ -53,9 +53,11 @@ app.post('/users/login', async (req, res) => {
     try {
         const user = await User.findByCredentials(body.email, body.password);
         const token = await user.generateAuthToken();
-        res.header('x-auth', token).send(user);
+        log.info(`Successful user login: ${body.email}`);
+        res.header('x-auth', token).json(user);
     } catch (error) {
-        res.status(400).send(error);
+        log.error(`Failed user login: ${body.email}, ${error.message}`);
+        res.status(404).send();
     }
 });
 
@@ -66,26 +68,32 @@ app.post('/users', async (req, res) => {
     try {
         await user.save();
         const token = await user.generateAuthToken();
-        res.header('x-auth', token).send(user);
+        log.info(`Successful user creation: ${body.email}`);
+        res.header('x-auth', token).json(user);
     } catch (error) {
-        res.status(400).send(error);
+        log.error(`Failed user creation: ${body.email}, ${error.message}`);
+        res.status(400).json({errorMessage: error.message});
     }
 });
 
-app.delete('/users/logout', authenticate, (req, res) => {
-    req.user.removeToken(req.token).then(() => {
+app.delete('/users/logout', authenticate, async (req, res) => {
+    try {
+        await req.user.removeToken(req.token);
+        log.info(`Successful user logout: ${req.token}`);
         res.status(200).send();
-    }, () => {
-        res.status(400).send();
-    });
+    } catch (error) {
+        log.error(`Failed user logout: ${req.token}, ${error.message}`);
+        res.status(400).json({errorMessage: error.message});
+    }
 });
 
 app.get('/businesses', async (req, res) => {
     try {
         const businesses = await Business.find();
+        log.info(`Successful businesses index.`);
         res.status(200).json(businesses);
     } catch (error) {
-        log.error(`Failed to get /businesses with error: ${error.message}`);
+        log.error(`Failed businesses index, ${error.message}`);
         res.status(400).json({errorMessage: error.message});
     }
 });
@@ -96,12 +104,13 @@ app.get('/businesses/:id', async (req, res) => {
         const business = await Business.findById(_id);
         if (!business) {
             log.error(`No business found with _id: ${_id}`);
-            return res.status(404).json({});
+            return res.status(404).send();
         }
+        log.info(`Successful business show.`);
         return res.status(200).json(business);
-    } catch (e) {
-        log.error(`Failed to get business.id: ${_id}, ${e.message}`);
-        res.status(500).json({errorMessage: e.message});
+    } catch (error) {
+        log.error(`Failed business show with id: ${_id}, ${error.message}`);
+        res.status(400).json({errorMessage: error.message});
     }
 });
 
@@ -120,15 +129,18 @@ app.post('/businesses', authenticate, async (req, res) => {
     try {
         const business = new Business(body);
         const result = await business.save();
-        res.status(200).send(result);
+        log.info(`Successful business creation.`);
+        res.status(200).json(result);
     } catch (error) {
-        res.status(400).send(error);
+        log.error(`Failed business creation: ${body}, ${error.message}`);
+        res.status(400).json({errorMessage: error.message});
     }
 });
 
 app.put('/businesses/:id', authenticate, async (req, res) => {
     const _id = req.params.id;
     if (!ObjectId.isValid(_id)) {
+        log.error(`id is not a mongo ObjectId`);
         return res.status(404).send();
     }
     const body = _.pick(req.body, [
@@ -143,27 +155,43 @@ app.put('/businesses/:id', authenticate, async (req, res) => {
         'locations',
     ]);
     try {
-        const business = await Business.findOneAndUpdate(
+        const business = await Business.findById(_id);
+        if (!business) {
+            log.error(`No business found in update with id: ${_id}`);
+            return res.status(404).send();
+        }
+        const updatedBusiness = await Business.findOneAndUpdate(
             {_id},
             {$set: body},
             {new: true}
         );
-        res.status(200).send(business);
+        log.info(`Successful business update.`);
+        res.status(200).json(updatedBusiness);
     } catch (error) {
-        res.status(400).send(error);
+        log.error(`Failed business update with id: ${_id}, ${error.message}`);
+        res.status(400).json({errorMessage: error.message});
     }
 });
 
 app.delete('/businesses/:id', authenticate, async (req, res) => {
-    const id = req.params.id;
-    if (!ObjectId.isValid(id)) {
-        return res.status(404).send();
+    const _id = req.params.id;
+    if (!ObjectId.isValid(_id)) {
+        log.error(`id is not a mongo ObjectId`);
+        return res.status(400).send();
     }
-    const _id = await Business.findById(id).remove();
-    if (!_id) {
-        return res.status(404).send();
+    try {
+        const business = await Business.findById(_id);
+        if (!business) {
+            log.error(`No business found in delete with id: ${_id}`);
+            return res.status(404).send();
+        }
+        await Business.findByIdAndDelete(_id);
+        log.info(`Successful business deletion.`);
+        res.status(200).send();
+    } catch (error) {
+        log.error(`Failed business deletion with id: ${_id}, ${error.message}`);
+        res.status(400).json({errorMessage: error.message});
     }
-    res.send({_id});
 });
 
 app.listen(port, async () => {
