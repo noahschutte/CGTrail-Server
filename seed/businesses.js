@@ -34,14 +34,11 @@ module.exports = [
         ],
         name: 'Sazza Pizza + Salads',
         alumName: 'Jeff Rogoff',
-        title: 'Owner',
-        class: 1993,
-        degree: 'BA',
-        field: 'Psychology',
+        alumTitle: 'Owner',
+        alumClass: '1993',
+        alumDegree: 'BA',
+        alumField: 'Psychology',
         url: 'http://sazzarestaurant.com',
-        Primary_Image_url: 'http://www.seanpatrickreilly.com/.a/6a00d8341cb57353ef0148c6e7bf0f970c-pi',
-        Image2_url: 'https://i.imgur.com/gqOeErI.jpg',
-        Logo_url: 'http://www.sazzarestaurant.com/wp-content/uploads/2017/07/logo_sazza_home.png',
     },
     {
         locations: [{
@@ -60,10 +57,10 @@ module.exports = [
         }],
         name: 'Great Divide Brewing Co.',
         alumName: 'Brian Dunn',
-        title: 'CEO & Founder',
-        class: 1992,
-        degree: 'MEPM',
-        field: 'Environmental Policy & Management',
+        alumTitle: 'CEO & Founder',
+        alumClass: '1992',
+        alumDegree: 'MEPM',
+        alumField: 'Environmental Policy & Management',
         url: 'https://greatdivide.com',
     },
     {
@@ -82,7 +79,7 @@ module.exports = [
         }],
         name: 'One Day for DU',
         url: 'https://www.du.edu/oneday',
-        Description: '#1day4DU is May 23! Check out the 32 featured causes ' +
+        description: '#1day4DU is May 23! Check out the 32 featured causes ' +
             'at du.edu/oneday. They\'re making the world a better place!',
     },
     {
@@ -102,12 +99,12 @@ module.exports = [
         }],
         name: 'Milk Market',
         alumName: 'Frank Bonnano',
-        title: 'Principal',
-        class: 1990,
-        degree: 'BSBA',
-        field: 'Real Estate',
+        alumTitle: 'Principal',
+        alumClass: '1990',
+        alumDegree: 'BSBA',
+        alumField: 'Real Estate',
         url: 'http://www.denvermilkmarket.com/',
-        Description: 'Denver Milk Market is an all-local, all-wonderful mix ' +
+        description: 'Denver Milk Market is an all-local, all-wonderful mix ' +
             'of take-away and dine-in restaurants and bars run by Colorado ' +
             'chef Frank Bonanno. Denver Milk Market, a 16-venue cornerstone ' +
             'of the historic Dairy Block, aims to draw in travelers, ' +
@@ -116,13 +113,14 @@ module.exports = [
             'Ballpark Neighborhood here in Denver. ',
     },
     {
-        locations: [{
-            coordinates: [
-                39.75552,
-                -104.98894,
-            ],
-            name: 'Snooze Ballpark',
-        },
+        locations: [
+            {
+                coordinates: [
+                    39.75552,
+                    -104.98894,
+                ],
+                name: 'Snooze Ballpark',
+            },
             {
                 coordinates: [
                     39.75344,
@@ -175,7 +173,7 @@ module.exports = [
         ],
         name: 'Snooze an A.M. Eatery',
         alumName: 'Jon and Adam Schlegel',
-        degree: 'BSBA',
-        class: 1997,
+        alumDegree: 'BSBA',
+        alumClass: '1997',
     },
 ];

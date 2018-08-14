@@ -4,7 +4,7 @@ const _ = require('lodash');
 const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
-const ObjectID = require('mongodb').ObjectID;
+const ObjectId = require('mongoose').Types.ObjectId;
 const Log = require('log');
 
 const User = require('./models/user');
@@ -49,7 +49,7 @@ function ignoreFavicon(req, res, next) {
 
 app.get('/businesses', async (req, res) => {
     try {
-        const businesses = await Business.findAll();
+        const businesses = await Business.find();
         res.status(200).json(businesses);
     } catch (e) {
         log.error(`Failed to get /businesses with error: ${e.message}`);
@@ -136,10 +136,10 @@ app.put('/businesses/:id', authenticate, async (req, res) => {
 
 app.delete('/businesses/:id', authenticate, async (req, res) => {
     let id = req.params.id;
-    if (!ObjectID.isValid(id)) {
+    if (!ObjectId.isValid(id)) {
         return res.status(404).send();
     }
-    const _id = await Business.deleteById(id);
+    const _id = await Business.findById(id).remove();
     if (!_id) {
         return res.status(404).send();
     }

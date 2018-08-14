@@ -2,7 +2,7 @@
   "name": "cgtrail-server",
   "version": "1.0.0",
   "description": "www.CrimsonAndGoldTrail.com",
-  "main": "MongoClient.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "lint": "eslint .",
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/noahschutte/CGTrail-Server.git"
   },
-  "author": "",
+  "author": "Noah Schutte",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/noahschutte/CGTrail-Server/issues"
@@ -31,7 +31,6 @@
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.10",
     "log": "^1.4.0",
-    "mongodb": "^3.1.1",
     "mongoose": "^5.2.7",
     "validator": "^10.5.0"
   },

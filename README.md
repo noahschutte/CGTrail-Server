@@ -6,8 +6,8 @@ https://github.com/noahschutte/CGTrail-Server
 
 ## Setup Instructions
 ### Global dependencies:
-    - node
-    - npm
+- node
+- npm
 
 ### Run Locally
 1. `npm install`

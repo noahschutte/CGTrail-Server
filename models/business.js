@@ -1,7 +1,7 @@
-const mongoose = require('../mongoose');
+const mongoose = require('../db/mongoose');
 
 const BusinessSchema = new mongoose.Schema({
-    alumnName: {
+    alumName: {
         type: String,
     },
     alumTitle: {

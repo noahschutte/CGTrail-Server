@@ -1,6 +1,8 @@
 require('../configs/config');
 const businesses = require('./businesses');
 const Business = require('../models/business');
+const Log = require('log');
+const log = new Log('info');
 
 /**
  * Seeds db with businesses
@@ -8,7 +10,7 @@ const Business = require('../models/business');
  * @private
  */
 async function _main() {
-    console.log('Starting to seed mongo db...');
+    log.info('Starting to seed mongo db...');
 
     await new Promise(async (resolve, reject) => {
         let count = 0;
@@ -16,19 +18,19 @@ async function _main() {
             const business = new Business(businessInfo);
             await business.save();
             count ++;
-            console.log(`Uploaded ${count}`);
+            log.info(`Uploaded ${count}`);
             if (count === businesses.length) {
                 resolve(true);
             }
         });
     });
 
-    console.log('Done seeding db.');
+    log.info('Done seeding db.');
     return true;
 }
 
 _main().then(() => {
     process.exit(0);
 }, (err) => {
-    console.error(err);
+    log.error(err);
 });
