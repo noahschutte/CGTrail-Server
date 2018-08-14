@@ -38,12 +38,14 @@ module.exports = [
         alumClass: '1993',
         alumDegree: 'BA',
         alumField: 'Psychology',
+        description: '',
         url: 'http://sazzarestaurant.com',
     },
     {
         locations: [{
             address: {
                 street: '2201 Arapahoe St',
+                suite: 'Unit 104',
                 city: 'Denver',
                 state: 'CO',
                 zip: '80205',
@@ -61,12 +63,14 @@ module.exports = [
         alumClass: '1992',
         alumDegree: 'MEPM',
         alumField: 'Environmental Policy & Management',
+        description: '',
         url: 'https://greatdivide.com',
     },
     {
         locations: [{
             address: {
                 street: '2199 S University Blvd',
+                suite: 'Unit 104',
                 city: 'Denver',
                 state: 'CO',
                 zip: '80208',
@@ -76,11 +80,17 @@ module.exports = [
                 -104.961484,
             ],
             name: 'One Day for DU',
+            phone: '',
         }],
         name: 'One Day for DU',
-        url: 'https://www.du.edu/oneday',
+        alumName: '',
+        alumTitle: '',
+        alumClass: '',
+        alumDegree: '',
+        alumField: '',
         description: '#1day4DU is May 23! Check out the 32 featured causes ' +
             'at du.edu/oneday. They\'re making the world a better place!',
+        url: 'https://www.du.edu/oneday',
     },
     {
         locations: [{
@@ -96,6 +106,7 @@ module.exports = [
                 -104.997312,
             ],
             name: 'Milk Market',
+            phone: '',
         }],
         name: 'Milk Market',
         alumName: 'Frank Bonnano',
@@ -115,25 +126,49 @@ module.exports = [
     {
         locations: [
             {
+                address: {
+                    street: '',
+                    suite: '',
+                    city: '',
+                    state: '',
+                    zip: '',
+                },
                 coordinates: [
                     39.75552,
                     -104.98894,
                 ],
                 name: 'Snooze Ballpark',
+                phone: '',
             },
             {
+                address: {
+                    street: '',
+                    suite: '',
+                    city: '',
+                    state: '',
+                    zip: '',
+                },
                 coordinates: [
                     39.75344,
                     -104.99986,
                 ],
                 name: 'Snooze Union Station',
+                phone: '',
             },
             {
+                address: {
+                    street: '',
+                    suite: '',
+                    city: '',
+                    state: '',
+                    zip: '',
+                },
                 coordinates: [
                     39.59319,
                     -104.96178,
                 ],
                 name: 'Snooze SoGlo',
+                phone: '',
             },
             {
                 coordinates: [
@@ -141,39 +176,76 @@ module.exports = [
                     -104.87909,
                 ],
                 name: 'Snooze Lone Tree',
+                phone: '',
             },
             {
+                address: {
+                    street: '',
+                    suite: '',
+                    city: '',
+                    state: '',
+                    zip: '',
+                },
                 coordinates: [
                     40.01921,
                     -105.27421,
                 ],
                 name: 'Snooze Boulder',
+                phone: '',
             },
             {
+                address: {
+                    street: '',
+                    suite: '',
+                    city: '',
+                    state: '',
+                    zip: '',
+                },
                 coordinates: [
                     39.72759,
                     -104.94046,
                 ],
                 name: 'Snooze 7co',
+                phone: '',
             },
             {
+                address: {
+                    street: '',
+                    suite: '',
+                    city: '',
+                    state: '',
+                    zip: '',
+                },
                 coordinates: [
                     39.62538,
                     -104.89994,
                 ],
                 name: 'Snooze DTC',
+                phone: '',
             },
             {
+                address: {
+                    street: '',
+                    suite: '',
+                    city: '',
+                    state: '',
+                    zip: '',
+                },
                 coordinates: [
                     39.88866,
                     -105.06774,
                 ],
                 name: 'Snooze Westminster',
+                phone: '',
             },
         ],
         name: 'Snooze an A.M. Eatery',
         alumName: 'Jon and Adam Schlegel',
         alumDegree: 'BSBA',
         alumClass: '1997',
+        alumTitle: '',
+        alumField: '',
+        description: '',
+        url: '',
     },
 ];

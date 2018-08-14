@@ -15,12 +15,16 @@ async function _main() {
     await new Promise(async (resolve, reject) => {
         let count = 0;
         await businesses.forEach(async (businessInfo) => {
-            const business = new Business(businessInfo);
-            await business.save();
-            count ++;
-            log.info(`Uploaded ${count}`);
-            if (count === businesses.length) {
-                resolve(true);
+            try {
+                const business = new Business(businessInfo);
+                await business.save();
+                count ++;
+                log.info(`Uploaded ${count}`);
+                if (count === businesses.length) {
+                    resolve(true);
+                }
+            } catch (error) {
+                reject(error);
             }
         });
     });

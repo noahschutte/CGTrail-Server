@@ -1,19 +1,16 @@
 const User = require('./../models/user');
 
-const authenticate = (req, res, next) => {
-    let token = req.header('x-auth');
+const authenticate = async (req, res, next) => {
+    const token = req.header('x-auth');
 
-    User.findByToken(token).then((user) => {
-        if (!user) {
-            return Promise.reject();
-        }
-
+    const user = await User.findByToken(token);
+    if (user) {
         req.user = user;
         req.token = token;
         next();
-    }).catch((e) => {
+    } else {
         res.status(401).send();
-    });
+    }
 };
 
 module.exports = authenticate;
