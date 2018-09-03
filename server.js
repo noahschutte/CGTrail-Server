@@ -55,6 +55,7 @@ app.post('/users/login', async (req, res) => {
         const token = await user.generateAuthToken();
         log.info(`Successful user login: ${body.email}`);
         res.header('x-auth', token).json(user);
+        res.status(200).send();
     } catch (error) {
         log.error(`Failed user login: ${body.email}, ${error.message}`);
         res.status(404).send();
@@ -70,6 +71,7 @@ app.post('/users', async (req, res) => {
         const token = await user.generateAuthToken();
         log.info(`Successful user creation: ${body.email}`);
         res.header('x-auth', token).json(user);
+        res.status(200).send();
     } catch (error) {
         log.error(`Failed user creation: ${body.email}, ${error.message}`);
         res.status(400).json({errorMessage: error.message});
